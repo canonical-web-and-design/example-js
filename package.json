@@ -1,0 +1,27 @@
+{
+  "name": "example-js",
+  "version": "0.0.1",
+  "description": "This is a small script written in javascript to convert a link to a pattern example with a code block.",
+  "main": "js/example.js",
+  "scripts": {
+    "babel": "babel --presets es2015 js/example.js -o build/main.bundle.js",
+    "start": "http-server"
+  },
+  "keywords": [
+    "javascript",
+    "pattern",
+    "libaray",
+    "patterns",
+    "examples",
+    "code",
+    "blocks"
+  ],
+  "author": "Anthony Dillon",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-cli": "^6.22.2",
+    "babel-core": "^6.22.1",
+    "babel-preset-es2015": "^6.22.0",
+    "http-server": "^0.9.0"
+  }
+}
