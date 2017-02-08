@@ -1,43 +1,55 @@
 var examples = document.querySelectorAll('.js-example');
-examples.forEach(function(example) {
-  renderIframe(example);
-});
+examples.forEach(renderExample);
 
-function renderIframe(example) {
-  var link = example.href;
-  if (!link) { return; }
+function renderExample(exampleElement) {
+  var link = exampleElement.href;
+  var request = new XMLHttpRequest();
+
+  request.onreadystatechange = function() {
+      if (request.status === 200 && request.readyState === 4) {
+        var html = request.responseText;
+        renderIframe(exampleElement, html);
+        renderCodeBlock(exampleElement, html);
+        exampleElement.style.display = 'none';
+      }
+  };
+
+  request.open('GET', link, true);
+  request.send(null);
+}
+
+function renderIframe(placementElement, html) {
   var iframe = document.createElement('iframe');
-  iframe.src = link;
   iframe.width = '100%';
-  iframe.onload = function(loadEvent) {
-      this.height = this.contentWindow.document.body.scrollHeight + "px";
-  }
-  example.parentNode.insertBefore(iframe, example);
-  renderCodeBlock(example);
+  placementElement.parentNode.insertBefore(iframe, placementElement);
+  var doc = iframe.contentWindow.document;
+  doc.open();
+  doc.write(html);
+  doc.close();
+
+  /**
+   * Wait for content to load before determining height
+   */
+  var resizeInterval = setInterval(
+    function() {
+      if (iframe.contentDocument.readyState == 'complete') {
+        iframe.height = iframe.contentDocument.body.scrollHeight + "px";
+        clearInterval(resizeInterval);
+      }
+    },
+    100
+  );
+  setTimeout(function() {clearInterval(resizeInterval);}, 2000);
 }
 
-function renderCodeBlock(example) {
-  var link = example.href;
-  var x = new XMLHttpRequest();
-  var pattern = /<body[^>]*>((.|[\n\r])*)<\/body>/im
+function renderCodeBlock(placementElement, html) {
+  var pattern = /<body[^>]*>((.|[\n\r])*)<\/body>/im;
+  var patternCode = document.createTextNode(pattern.exec(html)[1]);
+  var pre = document.createElement('pre');
+  var code = document.createElement('code');
 
-  x.onreadystatechange = function() {
-    if (x.status === 200 && x.readyState === 4) {
-      var source = x.responseText;
-      var patternCode = document.createTextNode(pattern.exec(source)[1]);
-      var pre = document.createElement('pre');
-      var code = document.createElement('code');
-      code.appendChild(patternCode);
-      pre.appendChild(code);
-      example.parentNode.insertBefore(pre, example);
-      hideExample(example);
-    }
-  }
+  code.appendChild(patternCode);
+  pre.appendChild(code);
 
-  x.open('GET', link, true);
-  x.send(null);
-}
-
-function hideExample(example) {
-  example.style.display = 'none';
+  placementElement.parentNode.insertBefore(pre, placementElement);
 }
