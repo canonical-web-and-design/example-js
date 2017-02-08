@@ -2,6 +2,13 @@
 
 This is a small script written in javascript to convert a link to a pattern example with a code block.
 
+## Installation
+
+Install the node dependencies
+```bash
+npm Install
+```
+
 ## Usage
 
 Start by transpiling the the js with babel
