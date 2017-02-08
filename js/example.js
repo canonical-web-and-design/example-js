@@ -6,12 +6,12 @@ examples.forEach(function(example) {
 function renderIframe(example) {
   var link = example.href;
   if (!link) { return; }
-  var height = example.dataset.height;
-  if (!height) { height = '100px'; }
   var iframe = document.createElement('iframe');
   iframe.src = link;
   iframe.width = '100%';
-  iframe.height = height;
+  iframe.onload = function(loadEvent) {
+      this.height = this.contentWindow.document.body.scrollHeight + "px";
+  }
   example.parentNode.insertBefore(iframe, example);
   renderCodeBlock(example);
 }
