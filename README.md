@@ -6,7 +6,7 @@ This is a small script written in javascript to convert a link to a pattern exam
 
 Install the node dependencies.
 ```bash
-npm Install
+npm install
 ```
 
 ## Usage
