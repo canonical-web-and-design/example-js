@@ -21,6 +21,7 @@ function renderExample(exampleElement) {
 function renderIframe(placementElement, html) {
   var iframe = document.createElement('iframe');
   iframe.width = '100%';
+  iframe.frameBorder = 0;
   placementElement.parentNode.insertBefore(iframe, placementElement);
   var doc = iframe.contentWindow.document;
   doc.open();
