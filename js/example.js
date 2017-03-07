@@ -34,7 +34,9 @@ function renderIframe(placementElement, html) {
   var resizeInterval = setInterval(
     function() {
       if (iframe.contentDocument.readyState == 'complete') {
-        iframe.height = iframe.contentDocument.body.scrollHeight + "px";
+        // Add extra spacing to catch edge cases
+        const frameHeight = iframe.contentDocument.body.scrollHeight + 10;
+        iframe.height = frameHeight + "px";
         clearInterval(resizeInterval);
       }
     },
