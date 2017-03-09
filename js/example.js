@@ -34,6 +34,8 @@ function renderIframe(placementElement, html) {
   var resizeInterval = setInterval(
     function() {
       if (iframe.contentDocument.readyState == 'complete') {
+        // remove any residual margin
+        iframe.contentDocument.body.style.margin = 0;
         // Add extra spacing to catch edge cases
         const frameHeight = iframe.contentDocument.body.scrollHeight + 10;
         iframe.height = frameHeight + "px";
