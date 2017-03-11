@@ -49,7 +49,7 @@ function renderIframe(placementElement, html) {
 
 function renderCodeBlock(placementElement, html) {
   var pattern = /<body[^>]*>((.|[\n\r])*)<\/body>/im;
-  var patternCode = document.createTextNode(pattern.exec(html)[1]);
+  var patternCode = document.createTextNode(pattern.exec(html)[1].trim());
   var pre = document.createElement('pre');
   var code = document.createElement('code');
 
