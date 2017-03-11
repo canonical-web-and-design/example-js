@@ -28,9 +28,7 @@ function renderIframe(placementElement, html) {
   doc.write(html);
   doc.close();
 
-  /**
-   * Wait for content to load before determining height
-   */
+  // Wait for content to load before determining height
   var resizeInterval = setInterval(
     function() {
       if (iframe.contentDocument.readyState == 'complete') {
