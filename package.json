@@ -4,7 +4,7 @@
   "description": "This is a small script written in javascript to convert a link to a pattern example with a code block.",
   "main": "js/example.js",
   "scripts": {
-    "build": "mkdir -p build && node_modules/.bin/babel --presets es2015 js/example.js -o build/main.bundle.js --no-comments --minified",
+    "build": "mkdir -p build && node_modules/.bin/babel --presets es2015 js/*.js -o build/main.bundle.js --no-comments --minified",
     "start": "http-server"
   },
   "keywords": [
