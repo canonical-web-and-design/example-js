@@ -52,6 +52,8 @@ function renderIframe(placementElement, html) {
       if (iframe.contentDocument.readyState == 'complete') {
         // remove any residual margin
         iframe.contentDocument.body.style.margin = 0;
+        // add padding to see shadows pattern shadows
+        iframe.contentDocument.body.style.padding = '0 4px';
         // Add extra spacing to catch edge cases
         const frameHeight = iframe.contentDocument.body.scrollHeight + 10;
         iframe.height = frameHeight + "px";
