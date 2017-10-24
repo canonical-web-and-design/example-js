@@ -67,7 +67,8 @@ function renderIframe(placementElement, html) {
 
 function renderCodeBlock(placementElement, html) {
   var pattern = /<body[^>]*>((.|[\n\r])*)<\/body>/im;
-  var patternCode = document.createTextNode(pattern.exec(html)[1].trim());
+  var source = stripScripts(pattern.exec(html)[1].trim());
+  var patternCode = document.createTextNode(source);
   var pre = document.createElement('pre');
   var code = document.createElement('code');
 
@@ -76,11 +77,22 @@ function renderCodeBlock(placementElement, html) {
   pre.appendChild(code);
   hljs.highlightBlock(code);
 
-  for(let classname in highlightStyles) {
+  for (let classname in highlightStyles) {
     pre.querySelectorAll('.' + classname).forEach(node => {
       node.setAttribute('style', highlightStyles[classname]);
     });
   }
 
   placementElement.parentNode.insertBefore(pre, placementElement);
+}
+
+function stripScripts(source) {
+  var div = document.createElement('div');
+  div.innerHTML = source;
+  var scripts = div.getElementsByTagName('script');
+  var i = scripts.length;
+  while (i--) {
+    scripts[i].parentNode.removeChild(scripts[i]);
+  }
+  return div.innerHTML;
 }
