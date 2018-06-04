@@ -1,0 +1,27 @@
+@import 'vanilla-framework/scss/vanilla';
+@include vf-b-code;
+@include vf-b-button;
+
+$copy-btn-margin: 1rem;
+$copy-btn-size: 2.5rem;
+$code-example-max-height: 22.5rem;
+
+.p-code-example {
+  max-height: $code-example-max-height;
+  padding-right: $copy-btn-size + $copy-btn-margin;
+  position: relative;
+  white-space: pre-wrap;
+
+  &__copy-btn {
+    @include vf-icon-copy(vf-url-friendly-color($color-mid-dark));
+    background: {
+      position: center;
+      repeat: no-repeat;
+    }
+    height: $copy-btn-size;
+    position: absolute;
+    right: $copy-btn-margin;
+    top: $copy-btn-margin;
+    width: $copy-btn-size;
+  }
+}

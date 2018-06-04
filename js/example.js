@@ -53,7 +53,7 @@ function renderIframe(placementElement, html) {
         // remove any residual margin
         iframe.contentDocument.body.style.margin = 0;
         // add padding to see shadows pattern shadows
-        iframe.contentDocument.body.style.padding = '0 4px';
+        iframe.contentDocument.body.style.padding = '4px';
         // Add extra spacing to catch edge cases
         const frameHeight = iframe.contentDocument.body.scrollHeight + 10;
         iframe.height = frameHeight + "px";
@@ -71,10 +71,18 @@ function renderCodeBlock(placementElement, html) {
   var patternCode = document.createTextNode(source);
   var pre = document.createElement('pre');
   var code = document.createElement('code');
+  var copyBtn = document.createElement('button');
 
-  code.appendChild(patternCode);
-  code.classList.add('html');
+  // Set attributes of code block
+  pre.classList.add('p-code-example');
+  code.classList.add('html', 'p-code-example__code');
+  copyBtn.classList.add('p-code-example__copy-btn');
+  copyBtn.title = 'Copy to clipboard';
+
+  // Build code block structure
   pre.appendChild(code);
+  pre.appendChild(copyBtn);
+  code.appendChild(patternCode);
   hljs.highlightBlock(code);
 
   for (let classname in highlightStyles) {
@@ -84,6 +92,8 @@ function renderCodeBlock(placementElement, html) {
   }
 
   placementElement.parentNode.insertBefore(pre, placementElement);
+
+  copyBtn.addEventListener('click', () => setClipboard(source));
 }
 
 function stripScripts(source) {
@@ -95,4 +105,17 @@ function stripScripts(source) {
     scripts[i].parentNode.removeChild(scripts[i]);
   }
   return div.innerHTML;
+}
+
+function setClipboard(value) {
+  const tempTextarea = document.createElement("textarea");
+  tempTextarea.value = value;
+  document.body.appendChild(tempTextarea);
+  tempTextarea.select();
+  try {
+    document.execCommand('copy');
+  } catch (error) {
+    console.warn(`Unable to copy: ${error.message}`);
+  }
+  document.body.removeChild(tempTextarea);
 }
