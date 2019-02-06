@@ -8,10 +8,13 @@
   @include vf-b-placeholders;
   @include vf-b-code;
   @include vf-b-button;
-  max-height: $code-example-max-height;
-  padding-right: $copy-btn-size + $copy-btn-margin;
-  position: relative;
-  white-space: pre-wrap;
+
+  &__pre {
+    max-height: $code-example-max-height;
+    padding-right: $copy-btn-size + $copy-btn-margin;
+    position: relative;
+    white-space: pre-wrap;
+  }
 
   &__copy-btn {
     @include vf-icon-copy(vf-url-friendly-color($color-mid-dark));
