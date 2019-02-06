@@ -21,10 +21,10 @@ Then run the local server with the following command.
 npm start
 ```
 
-Open a browser and access http://localhost:8080
+Open a browser and access http://localhost:8082
 
 ## Testing
 
-You can view the testing page at http://127.0.0.1:8080/testing/
+You can view the testing page at http://127.0.0.1:8082/testing/
 
 If you find you fix a problem please add an example to it for quick testing.
