@@ -5,7 +5,7 @@
   "main": "js/example.js",
   "scripts": {
     "build": "mkdir -p build && npm run build-css && node_modules/.bin/babel --presets es2015 js/*.js -o build/main.bundle.js --no-comments --minified",
-    "build-css": "node-sass --include-path node_modules scss --output build",
+    "build-css": "node-sass --include-path node_modules scss --output-style compressed --output build",
     "start": "http-server"
   },
   "keywords": [

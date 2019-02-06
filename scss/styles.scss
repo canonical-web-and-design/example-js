@@ -1,12 +1,13 @@
-@import 'vanilla-framework/scss/vanilla';
-@include vf-b-code;
-@include vf-b-button;
-
-$copy-btn-margin: 1rem;
-$copy-btn-size: 2.5rem;
-$code-example-max-height: 22.5rem;
+@import 'settings';
+@import 'vanilla-framework/scss/base_placeholders';
+@import 'vanilla-framework/scss/base_code';
+@import 'vanilla-framework/scss/base_button';
+@import 'vanilla-framework/scss/patterns_icons';
 
 .p-code-example {
+  @include vf-b-placeholders;
+  @include vf-b-code;
+  @include vf-b-button;
   max-height: $code-example-max-height;
   padding-right: $copy-btn-size + $copy-btn-margin;
   position: relative;
