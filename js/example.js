@@ -69,17 +69,21 @@ function renderCodeBlock(placementElement, html) {
   var pattern = /<body[^>]*>((.|[\n\r])*)<\/body>/im;
   var source = stripScripts(pattern.exec(html)[1].trim());
   var patternCode = document.createTextNode(source);
+  var container = document.createElement('div');
   var pre = document.createElement('pre');
   var code = document.createElement('code');
   var copyBtn = document.createElement('button');
 
   // Set attributes of code block
-  pre.classList.add('p-code-example');
+
+  container.classList.add('p-code-example');
+  pre.classList.add('p-code-example__pre');
   code.classList.add('html', 'p-code-example__code');
   copyBtn.classList.add('p-code-example__copy-btn');
   copyBtn.title = 'Copy to clipboard';
 
   // Build code block structure
+  container.appendChild(pre);
   pre.appendChild(code);
   pre.appendChild(copyBtn);
   code.appendChild(patternCode);
@@ -91,7 +95,7 @@ function renderCodeBlock(placementElement, html) {
     });
   }
 
-  placementElement.parentNode.insertBefore(pre, placementElement);
+  placementElement.parentNode.insertBefore(container, placementElement);
 
   copyBtn.addEventListener('click', () => setClipboard(source));
 }
