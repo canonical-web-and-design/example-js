@@ -5,7 +5,6 @@
 @import 'vanilla-framework/scss/patterns_icons';
 
 .p-code-example {
-  @include vf-b-placeholders;
   @include vf-b-code;
   @include vf-b-button;
 
