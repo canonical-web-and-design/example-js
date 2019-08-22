@@ -55,7 +55,7 @@ function renderIframe(placementElement, html) {
         // add padding to see shadows pattern shadows
         iframe.contentDocument.body.style.padding = '4px';
         // Add extra spacing to catch edge cases
-        const frameHeight = iframe.contentDocument.body.scrollHeight + 10;
+        const frameHeight = iframe.contentDocument.body.scrollHeight;
         iframe.height = frameHeight + "px";
         clearInterval(resizeInterval);
       }
