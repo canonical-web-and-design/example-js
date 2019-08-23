@@ -8,14 +8,14 @@
   @include vf-b-code;
   @include vf-b-button;
 
-  &__pre {
+  .p-code-example__pre {
     max-height: $code-example-max-height;
     padding-right: $copy-btn-size + $copy-btn-margin;
     position: relative;
     white-space: pre-wrap;
   }
 
-  &__copy-btn {
+  .p-code-example__copy-btn {
     @include vf-icon-copy(vf-url-friendly-color($color-mid-dark));
     background: {
       position: center;
