@@ -1,6 +1,6 @@
 {
   "name": "example-js",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "This is a small script written in javascript to convert a link to a pattern example with a code block.",
   "main": "js/example.js",
   "scripts": {
